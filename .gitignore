@@ -1,0 +1,14 @@
+# package directories
+node_modules/
+jspm_packages
+
+# idea
+.idea/
+
+# configs
+configs/
+
+# Serverless directories
+.serverless
+
+
