@@ -1,13 +1,14 @@
 import {
   GraphQLObjectType,
+  GraphQLInterfaceType,
   GraphQLList,
   GraphQLString,
   GraphQLNonNull
-} from 'graphql'
+} from 'graphql';
 
-import EntityType from './interfaces'
+import { EntityType }  from './interfaces'
 
-export const Card = new GraphQLObjectType({
+export const CardType = new GraphQLObjectType({
   name: 'Card',
   description: 'a flashcard within a set',
   interfaces: [EntityType],
@@ -17,16 +18,4 @@ export const Card = new GraphQLObjectType({
     definition: { type: new GraphQLNonNull(GraphQLString) },
     compKey: GraphQLString
   }
-})
-
-export const Set = new GraphQLObjectType({
-  name: 'Set',
-  description: 'Study set a user creates',
-  interfaces: [EntityType],
-  fields: {
-    title: GraphQLString,
-    id: GraphQLString,
-    cards: { type: new GraphQLList(Card) },
-    compKey: GraphQLString
-  }
-})
+});

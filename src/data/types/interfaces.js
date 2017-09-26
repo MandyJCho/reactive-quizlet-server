@@ -2,7 +2,7 @@ import { GraphQLInterfaceType,
   GraphQLString
 } from 'graphql'
 
-const EntityType = new GraphQLInterfaceType({
+export const EntityType = new GraphQLInterfaceType({
   name: 'Entity',
   fields: {
     name: GraphQLString,
@@ -14,5 +14,3 @@ const EntityType = new GraphQLInterfaceType({
   },
   resolveType: {}
 })
-
-export default EntityType

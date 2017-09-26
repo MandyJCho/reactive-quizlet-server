@@ -28,7 +28,4 @@ module.exports = {
       template: './src/index.tmpl.html',
     }),
   ],
-  externals: {
-
-  }
 }
