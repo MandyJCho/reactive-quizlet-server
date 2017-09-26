@@ -5,10 +5,6 @@ jspm_packages
 # idea
 .idea/
 
-# configs
-configs/
-
 # Serverless directories
 .serverless
-
-
+serverless.yml
