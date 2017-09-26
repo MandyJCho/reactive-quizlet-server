@@ -1,7 +1,6 @@
 import {
   GraphQLObjectType,
-  GraphQLInterfaceType,
-  GraphQLList,
+  GraphQLID,
   GraphQLString,
   GraphQLNonNull
 } from 'graphql';
@@ -13,9 +12,18 @@ export const CardType = new GraphQLObjectType({
   description: 'a flashcard within a set',
   interfaces: [EntityType],
   fields: {
-    id: { type: new GraphQLNonNull(GraphQLString) },
-    term: { type: new GraphQLNonNull(GraphQLString) },
-    definition: { type: new GraphQLNonNull(GraphQLString) },
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    term: (GraphQLString),
+    definition: GraphQLString,
     compKey: GraphQLString
   }
 });
+
+export default `
+  type Card implements Entity {
+    id: ID!
+    term: String
+    definition: String
+    compKey: String!
+  }
+`

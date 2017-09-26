@@ -1,6 +1,6 @@
 import {
   GraphQLObjectType,
-  GraphQLInterfaceType,
+  GraphQLID,
   GraphQLList,
   GraphQLString,
   GraphQLNonNull
@@ -14,8 +14,8 @@ export const SetType = new GraphQLObjectType({
   description: 'Study set a user creates',
   interfaces: [EntityType],
   fields: {
-    title: GraphQLString,
-    id: GraphQLString,
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    id: { type: new GraphQLNonNull(GraphQLID) },
     cards: { type: new GraphQLList(CardType) },
     compKey: GraphQLString
   }
