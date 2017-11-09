@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: setup
+service: reactive-server
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -20,26 +20,22 @@ service: setup
 provider:
   name: aws
   runtime: nodejs6.10
+  iamRoleStatements:
+    - Effect: "Allow"
+      Allow:
+       - dynamodb:DescribeTable
+       - dynamodb:Query
+       - dynamodb:Scan
+       - dynamodb:GetItem
+       - dynamodb:PutItem
+       - dynamodb:UpdateItem
+       - dynamodb:DeleteItem
+       - dynamodb:GetRecords
+       - dynamodb:GetShardIterator
+       - dynamodb:DescribeStream
+       - dynamodb:ListStreams
+     Resource: arn:aws:dynamodb:us-east-1:*:*
 
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
-
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
 
 # you can define service wide environment variables here
 #  environment:
@@ -57,6 +53,30 @@ provider:
 functions:
   hello:
     handler: handler.hello
+
+  setCreate:
+    handler:
+    events:
+
+  setUpdate:
+    handler:
+    events:
+
+  setDelete:
+    handler:
+    events:
+
+  cardCreate:
+    handler:
+    events:
+
+  updateCard:
+    handler:
+    events:
+
+  deleteCard:
+    handler:
+    events:
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -91,13 +111,7 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+resources:
+  Resources:
+    SetsDynamoTable:
+      Type: AWS::
