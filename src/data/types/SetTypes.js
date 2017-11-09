@@ -1,12 +1,4 @@
-import {
-  GraphQLObjectType,
-  GraphQLID,
-  GraphQLList,
 
-} from 'graphql';
-import generateQuery from '../../../utils/generateQuery';
-
-// might need an inline fragment since i use an interface
 export const SetQuery = new GraphQLObjectType({
   name: 'Set Query',
   description: 'Retrieves all sets unless specified',
@@ -23,7 +15,6 @@ export const SetQuery = new GraphQLObjectType({
 export const Set =
   `
    type Set implements Entity{
-      id: String!
       title: String!
       cards: [CardTypes]!
       compKey: String!
@@ -49,4 +40,36 @@ export const SetMutations = `
   }
 `;
 
-export const SetQuery = generateQuery('EntityInterface', 'set');
+export default `
+  input SetInput {
+    id: ID!,
+    title: String!,
+    compKey: String!
+  }
+  
+  type Set {
+      id: ID!
+      title: String!
+      cards: [CardTypes]!
+      compKey: String!
+  }
+  
+  type Mutation {
+    setCreate(
+      input: SetInput
+    ): Set
+    
+    setUpdate(
+      id: ID!,
+      input: SetInput
+    ): Set
+    
+    setDelete(
+      id: ID!
+    )
+  }
+  
+  type Query {
+    getSet(id: ID!)
+  }
+`;

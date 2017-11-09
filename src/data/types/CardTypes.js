@@ -1,37 +1,37 @@
-import generateQuery from '../../../utils/generateQuery';
+import { buildSchema } from 'graphql';
 
-export const CardType = `
-  type Card implements Entity {
-    id: String!
-    owner: Set!
+export default buildSchema(`
+  input CardInput {
     term: String
     definition: String
-    compKey: String!
   }
-`;
 
-export const CardMutations = `
+  type Card {
+    id: ID!
+    owner: ID!
+    term: String
+    definition: String
+  }
+  
+  type Query {
+    getCard(id: ID!): Card
+  }
+  
   type Mutation {
-  cardCreate(
-    id: String!
-    owner: Set!
-    term: String
-    definition: String
-    compKey: String!
-  ): Card
+    cardCreate(
+      owner: ID!,
+      input: CardInput
+    ): Card
+    
+    cardUpdate(
+      id: ID!
+      term: String
+      definition: String
+    ): Card
+    
+    cardDelete(
+      id: ID!
+    ): Card
+  }
   
-  cardUpdate(
-    id: String!
-    term: String
-    definition: String
-  ): Card
-  
-  
-  cardDelete(
-    id: String!
-  ): Card
-  
- }
-`;
-
-export const CardQuery = generateQuery('EntityInterface', 'Card');
+`);
