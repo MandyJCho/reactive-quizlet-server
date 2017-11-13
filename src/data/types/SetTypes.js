@@ -1,4 +1,6 @@
-export default `
+var buildSchema = require('graphql').buildSchema;
+
+export default buildSchema(`
   input SetInput {
     id: ID!,
     title: String!,
@@ -30,4 +32,4 @@ export default `
   type Query {
     getSet(id: ID!)
   }
-`;
+`);

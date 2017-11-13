@@ -1,4 +1,4 @@
-import { buildSchema } from 'graphql';
+var buildSchema = require('graphql').buildSchema;
 
 export default buildSchema(`
   input CardInput {
