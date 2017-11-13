@@ -1,7 +1,7 @@
-import * as Set from './SetTypes';
-import * as Cards from './CardTypes';
+const set = require('SetTypes');
+const card = require('CardTypes');
 
-export default {
-  Set,
-  Cards,
-};
+export default [
+  set,
+  card
+];
