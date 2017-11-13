@@ -1,30 +1,21 @@
-var buildSchema = require('graphql').buildSchema;
-
-export default buildSchema(`
+export default `
   input CardInput {
     term: String
     definition: String
   }
-
-  type Card {
-    id: ID!
-    owner: ID!
-    term: String
-    definition: String
-  }
-  
+ 
   type Query {
     getCard(id: ID!): Card
   }
   
   type Mutation {
     cardCreate(
-      owner: ID!,
+      owner: Set,
       input: CardInput
     ): Card
     
     cardUpdate(
-      id: ID!
+      id: Set!
       term: String
       definition: String
     ): Card
@@ -32,6 +23,5 @@ export default buildSchema(`
     cardDelete(
       id: ID!
     ): Card
-  }
-  
-`);
+  } 
+`;
