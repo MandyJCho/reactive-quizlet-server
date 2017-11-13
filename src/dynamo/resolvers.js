@@ -1,8 +1,11 @@
-import Promise from 'bluebird';
-import AWS from 'aws-sdk';
-import dynogels from 'dynogels';
-import dotenv from 'dotenv';
+require('dotenv').config({path: '../../configs/.env'});
 
-console.log(process.env.AWS_ACCESS_KEY_ID, process.env.AWS_SECRET_ACCESS_KEY);
+const Promise = require('bluebird');
+const aws = require('aws-sdk');
+const dynogels = require('dynogels');
 
-export default 'test';
+dynogels.AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.REGION
+})
