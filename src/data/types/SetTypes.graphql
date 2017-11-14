@@ -23,9 +23,9 @@ type Mutation {
 
   setDelete(
     id: ID!
-  )
+  ): Set
 }
 
 type Query {
-  getSet(id: ID!)
+  getSet(id: ID!): Set
 }

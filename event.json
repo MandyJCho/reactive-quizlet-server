@@ -3,3 +3,5 @@
   "key2": "value2",
   "key1": "value1"
 }
+// add lambda endpoints here
+// https://github.com/serverless/serverless/issues/576

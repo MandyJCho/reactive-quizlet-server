@@ -1,5 +1,5 @@
 const slsw = require('serverless-webpack');
-var nodeExternals = require('webpack-node-externals')
+var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     entry: slsw.lib.entries,
@@ -26,7 +26,7 @@ module.exports = {
           ]
         },
       ]
-    }
+    },
     output: {
         libraryTarget: 'commonjs',
         path: path.resolve(__dirname, '.webpack'),
