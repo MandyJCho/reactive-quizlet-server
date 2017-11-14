@@ -1,5 +1,5 @@
-const set = require('SetTypes');
-const card = require('CardTypes');
+const set = require('src/data/types/SetTypes');
+const card = require('src/data/types/CardTypes');
 
 export default [
   set,

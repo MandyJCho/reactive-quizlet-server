@@ -1,5 +1,4 @@
-export default `
-  input CardInput {
+ input CardInput {
     term: String
     definition: String
   }
@@ -24,4 +23,3 @@ export default `
       id: ID!
     ): Card
   } 
-`;
