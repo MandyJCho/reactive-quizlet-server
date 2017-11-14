@@ -1,6 +1,5 @@
-const resolvers = require('resolvers');
-const Joi = require('joi');
-
+import Joi from 'joi';
+import * as resolvers from './sets';
 
 let set = resolvers.define(
   'Set',
@@ -14,4 +13,3 @@ let set = resolvers.define(
     }
   },
   process.env.TABLE_SET);
-

@@ -1,5 +1,5 @@
 
-service: reactive-server
+service: reactive-quizlet-server
 
 plugins:
   - serverless-plugin-graphiql
@@ -16,19 +16,41 @@ provider:
   runtime: nodejs6.10
   iamRoleStatements:
     - Effect: "Allow"
-      Allow:
-       - dynamodb:DescribeTable
-       - dynamodb:Query
-       - dynamodb:Scan
-       - dynamodb:GetItem
-       - dynamodb:PutItem
-       - dynamodb:UpdateItem
-       - dynamodb:DeleteItem
-       - dynamodb:GetRecords
-       - dynamodb:GetShardIterator
-       - dynamodb:DescribeStream
-       - dynamodb:ListStreams
-    Resource: arn:aws:dynamodb:us-east-1:*:*
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:GetRecords
+        - dynamodb:GetShardIterator
+        - dynamodb:DescribeStream
+        - dynamodb:ListStreams
+      Resource: arn:aws:dynamodb:us-east-1:*:*
+
+plugins:
+  - serverless-plugin-graphiql
+  - serverless-dotenv-plugin
+  - serverless-webpack
+  - serverless-dynamodb-local
+
+custom:
+  dotenv:
+    path: configs/.env
+    include:
+      - AWS_USER_ARN
+  webpack: webpack.config.js
+  webpackIncludeModules: true
+  dynamodb:
+    start:
+      port: 9000
+      inMemory: true
+      migrate: true
+      seed: true
+    # Uncomment only if you already have a DynamoDB running locally
+    # noStart: true
 
 functions:
   hello:
@@ -36,11 +58,11 @@ functions:
 
   graphql:
     handler: src/handler.graphql
-    events:
-      - http:
-        - path: graphql
-        - method: post
-        - cors: true
+#    events:
+#      - http:
+#        - path: graphql
+#        - method: post
+#        - cors: true
 
 resources:
    Resources:
