@@ -1,1 +1,2 @@
-require('dynamo/resolvers');
+import './dynamo/resolvers';
+

@@ -1,7 +1,9 @@
-import set from 'src/data/types/SetTypes';
-const card = require('src/data/types/CardTypes');
+import { print } from 'graphql/language/printer';
+
+import set from './SetTypes.graphql';
+import card from './CardTypes.graphql';
 
 export default [
-  set,
-  card
+  print(set),
+  print(card)
 ];
