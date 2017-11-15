@@ -1,18 +1,15 @@
-module.exports = {
+module.exports =
+{
+  "extends": ["airbnb-standard"],
   "parser": "babel-eslint",
   "rules": {
-    "graphql/template-strings": ['error', {
-      // Import default settings for your GraphQL client. Supported values:
-      // 'apollo', 'relay', 'lokka'
-      env: 'apollo',
-
-      // Import your schema JSON here
-      schemaJson: require('./schema.json'),
-
-      // tagName is gql by default
-    }]
+    "space-before-function-paren": 0
+/*  "graphql/template-strings": ["error", {
+    "env": "apollo",
+    "schemaJson": require("./src/data/schema.json")
+    }]*/
   },
-  plugins: [
-    'graphql'
+  "plugins": [
+    "graphql"
   ]
-}
+};
