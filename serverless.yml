@@ -1,12 +1,6 @@
 
 service: reactive-quizlet-server
 
-custom:
-  dotenv:
-    path: configs/.env
-    include:
-      - AWS_USER_ARN
-
 provider:
   name: aws
   runtime: nodejs6.10
