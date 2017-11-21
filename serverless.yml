@@ -1,10 +1,6 @@
 
 service: reactive-quizlet-server
 
-plugins:
-  - serverless-plugin-graphiql
-  - serverless-dotenv-plugin
-
 custom:
   dotenv:
     path: configs/.env
@@ -14,6 +10,7 @@ custom:
 provider:
   name: aws
   runtime: nodejs6.10
+  profile: reactive
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -41,7 +38,7 @@ custom:
     path: configs/.env
     include:
       - AWS_USER_ARN
-  webpack: webpack.config.js
+  webpack: ./webpack.config.js
   webpackIncludeModules: true
   dynamodb:
     start:
@@ -55,6 +52,10 @@ custom:
 functions:
   hello:
     handler: src/handler.hello
+    events:
+      - http:
+          method: get
+          path: hello
 
   graphql:
     handler: src/handler.graphql
@@ -66,7 +67,7 @@ functions:
 
 resources:
    Resources:
-      DynamoDB_Sets:
+      DynamoDBSets:
         Type: 'AWS::DynamoDB::Table'
         Properties:
           AttributeDefinitions:
@@ -76,8 +77,11 @@ resources:
             - AttributeName: id
               KeyType: HASH
           TableName: sets
+          ProvisionedThroughput:
+            ReadCapacityUnits: 5
+            WriteCapacityUnits: 5
 
-      DynamoDB_Cards:
+      DynamoDBCards:
         Type: 'AWS::DynamoDB::Table'
         Properties:
           AttributeDefinitions:
@@ -87,3 +91,6 @@ resources:
             - AttributeName: id
               KeyType: HASH
           TableName: cards
+          ProvisionedThroughput:
+            ReadCapacityUnits: 5
+            WriteCapacityUnits: 5
