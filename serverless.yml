@@ -47,7 +47,7 @@ custom:
     path: configs/.env
     include:
       - AWS_USER_ARN
-  webpack: webpack.config.js
+  webpack: ./webpack.config.js
   webpackIncludeModules: true
   dynamodb:
     start:
