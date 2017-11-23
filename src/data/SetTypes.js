@@ -1,3 +1,5 @@
+export default
+`
 input SetInput {
   id: ID!,
   title: String!,
@@ -7,7 +9,7 @@ input SetInput {
 type Set {
   id: ID!
   title: String!
-  cards: [CardTypes]!
+
   compKey: String!
 }
 
@@ -29,3 +31,6 @@ type Mutation {
 type Query {
   getSet(id: ID!): Set
 }
+
+
+`;

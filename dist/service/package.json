@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "graphql-tools": "^2.8.0",
+    "graphql": "^0.11.3",
+    "aws-sdk": "latest",
+    "dynogels-promisified": "latest",
+    "dynogels": "^9.0.0",
+    "joi": "^13.0.2",
+    "apollo-server-lambda": "^1.2.0",
+    "graphql-playground-middleware": "latest"
+  }
+}

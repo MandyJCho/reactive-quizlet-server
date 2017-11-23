@@ -1,6 +1,16 @@
+export default `
 input CardInput {
   term: String
   definition: String
+}
+
+type Card {
+  id: ID!
+  owner: Set!
+  term: String
+  definition: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Query {
@@ -23,4 +33,4 @@ type Mutation {
     id: ID!
   ): Card
 }
-
+`;

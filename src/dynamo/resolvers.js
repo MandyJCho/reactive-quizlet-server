@@ -36,15 +36,6 @@ export const Set = dynogels.define(
   process.env.TABLE_SET
 );
 
-// Create table
-dynogels.createTables((err) => {
-  if (err) {
-    console.log('fqfqwnflkqwnefqnfkjknejknfen');
-    console.log(`Error creating table ${process.env.TABLE_SET}`, err);
-  } else {
-    console.log(`${process.env.TABLE_SET} has been created`);
-  }
-});
 // ADD
 
 // READ
@@ -52,3 +43,9 @@ dynogels.createTables((err) => {
 // UPDATE
 
 // DELETE
+
+export default {
+  Query: () => {
+    console.log('run');
+  }
+};

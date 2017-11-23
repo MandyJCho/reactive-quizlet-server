@@ -22,10 +22,8 @@ provider:
       Resource: arn:aws:dynamodb:us-east-1:*:*
 
 plugins:
-  - serverless-plugin-graphiql
   - serverless-dotenv-plugin
   - serverless-webpack
-  - serverless-dynamodb-local
 
 custom:
   dotenv:
@@ -34,14 +32,6 @@ custom:
       - AWS_USER_ARN
   webpack: ./webpack.config.js
   webpackIncludeModules: true
-  dynamodb:
-    start:
-      port: 9000
-      inMemory: true
-      migrate: true
-      seed: true
-    # Uncomment only if you already have a DynamoDB running locally
-    # noStart: true
 
 functions:
   hello:
@@ -52,12 +42,28 @@ functions:
           path: hello
 
   graphql:
-    handler: src/handler.graphql
-#    events:
-#      - http:
-#        - path: graphql
-#        - method: post
-#        - cors: true
+      handler: src/handler.graphqlHandler
+      events:
+      - http:
+          path: graphql
+          method: post
+          cors: true
+
+  playground:
+    handler: src/handler.playgroundHandler
+    events:
+    - http:
+        path: playground
+        method: get
+        cors: true
+
+  graphiql:
+    handler: src/handler.graphiqlHandler
+    events:
+    - http:
+        path: graphiql
+        method: get
+        cors: true
 
 resources:
    Resources:
