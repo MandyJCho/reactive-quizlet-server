@@ -6,7 +6,7 @@ import { graphqlLambda, graphiqlLambda } from 'apollo-server-lambda';
 import { lambdaPlayground } from 'graphql-playground-middleware';
 
 import schema from './data/SetTypes';
-import resolvers from './dynamo/resolvers';
+import resolvers from './dynamo/dynamo';
 
 module.exports.hello = (event, context, callback) => {
   const response = {

@@ -1,2 +1,2 @@
-import './dynamo/resolvers';
+import './dynamo/dynamo';
 

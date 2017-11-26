@@ -1,5 +1,5 @@
 const slsw = require('serverless-webpack');
-// const nodeExternals = require('webpack-node-externals');
+
 const path = require('path');
 
 module.exports = {
@@ -23,6 +23,6 @@ module.exports = {
     libraryTarget: 'commonjs',
     path: path.resolve('.webpack'),
     filename: 'src/handler.js'
-  },
+  }
   // externals: [nodeExternals()]
 };

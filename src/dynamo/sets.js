@@ -1,1 +1,1 @@
-import {Set } from './resolvers';
+import * as resolvers from './dynamo';

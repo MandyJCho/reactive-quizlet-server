@@ -5,6 +5,7 @@ provider:
   name: aws
   runtime: nodejs6.10
   profile: reactive
+  region: us-east-2
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -19,7 +20,7 @@ provider:
         - dynamodb:GetShardIterator
         - dynamodb:DescribeStream
         - dynamodb:ListStreams
-      Resource: arn:aws:dynamodb:us-east-1:*:*
+      Resource: arn:aws:dynamodb:us-east-2:*:*
 
 plugins:
   - serverless-dotenv-plugin
@@ -65,32 +66,33 @@ functions:
         method: get
         cors: true
 
-resources:
-   Resources:
-      DynamoDBSets:
-        Type: 'AWS::DynamoDB::Table'
-        Properties:
-          AttributeDefinitions:
-            - AttributeName: id
-              AttributeType: S
-          KeySchema:
-            - AttributeName: id
-              KeyType: HASH
-          TableName: sets
-          ProvisionedThroughput:
-            ReadCapacityUnits: 5
-            WriteCapacityUnits: 5
-
-      DynamoDBCards:
-        Type: 'AWS::DynamoDB::Table'
-        Properties:
-          AttributeDefinitions:
-            - AttributeName: id
-              AttributeType: S
-          KeySchema:
-            - AttributeName: id
-              KeyType: HASH
-          TableName: cards
-          ProvisionedThroughput:
-            ReadCapacityUnits: 5
-            WriteCapacityUnits: 5
+# if tables do not exist
+#resources:
+#   Resources:
+#      DynamoDBSets:
+#        Type: 'AWS::DynamoDB::Table'
+#        Properties:
+#          AttributeDefinitions:
+#            - AttributeName: id
+#              AttributeType: S
+#          KeySchema:
+#            - AttributeName: id
+#              KeyType: HASH
+#          TableName: sets
+#          ProvisionedThroughput:
+#            ReadCapacityUnits: 5
+#            WriteCapacityUnits: 5
+#
+#      DynamoDBCards:
+#        Type: 'AWS::DynamoDB::Table'
+#        Properties:
+#          AttributeDefinitions:
+#            - AttributeName: id
+#              AttributeType: S
+#          KeySchema:
+#            - AttributeName: id
+#              KeyType: HASH
+#          TableName: cards
+#          ProvisionedThroughput:
+#            ReadCapacityUnits: 5
+#            WriteCapacityUnits: 5
