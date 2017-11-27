@@ -34,8 +34,7 @@ export function updateItem(args) {
       .catch(reject));
 }
 
-//
-
+// DELETE
 export function deleteItem(args) {
   return new Promise((resolve, reject) =>
     dynamo.delete(args).promise()

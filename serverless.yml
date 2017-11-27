@@ -35,13 +35,6 @@ custom:
   webpackIncludeModules: true
 
 functions:
-  hello:
-    handler: src/handler.hello
-    events:
-      - http:
-          method: get
-          path: hello
-
   graphql:
       handler: src/handler.graphqlHandler
       events:
@@ -55,14 +48,6 @@ functions:
     events:
     - http:
         path: playground
-        method: get
-        cors: true
-
-  graphiql:
-    handler: src/handler.graphiqlHandler
-    events:
-    - http:
-        path: graphiql
         method: get
         cors: true
 

@@ -2,26 +2,14 @@
 require ('dotenv').config({ path: '../configs/.env' });
 
 import { makeExecutableSchema } from 'graphql-tools';
-import { graphqlLambda, graphiqlLambda } from 'apollo-server-lambda';
+import { graphqlLambda } from 'apollo-server-lambda';
 import { lambdaPlayground } from 'graphql-playground-middleware';
 
-import schema from './data/SetTypes';
-import resolvers from './dynamo/dynamo';
+import typeDefs from './data/SetTypes';
+import resolvers from './dynamo/SetResolvers';
 
-module.exports.hello = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Running v1',
-      input: event
-    })
-  };
-
-  callback(null, response);
-};
-
-const RQSchema = makeExecutableSchema({
-  typeDefs: schema,
+const schema = makeExecutableSchema({
+  typeDefs,
   resolvers,
   logger: console
 });
@@ -33,16 +21,9 @@ exports.graphqlHandler = function graphqlHandler(event, context, callback) {
     callback(error, output);
   }
 
-  const handler = graphqlLambda({ schema: RQSchema });
+  const handler = graphqlLambda({ schema });
   return handler(event, context, callbackFilter);
 };
-
-// for local endpointURL is /graphql and for prod it is /stage/graphql
-exports.graphiqlHandler = graphiqlLambda({
-  endpointURL: process.env.GRAPHQL_ENDPOINT
-    ? process.env.GRAPHQL_ENDPOINT
-    : '/prod/graphql'
-});
 
 // for local endpointURL is /graphql and for prod it is /stage/graphql
 exports.playgroundHandler = lambdaPlayground({
